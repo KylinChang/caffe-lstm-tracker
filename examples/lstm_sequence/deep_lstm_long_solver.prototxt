@@ -1,0 +1,8 @@
+net: "deep_lstm_long.prototxt"
+base_lr: 0.00005
+momentum: 0.95
+lr_policy: "fixed"
+display: 200
+max_iter: 100000
+solver_mode: CPU
+average_loss: 200
