@@ -1,53 +1,41 @@
-# LSTM Implementation in [Caffe](http://caffe.berkeleyvision.org)
- Note that the master branch of Caffe supports LSTM now. ([Jeff Donahue's implementation](https://github.com/BVLC/caffe/pull/2033) has been merged.) <br />
- This repo is no longer maintained. <br />
- 
-## Speed comparison (Titan X, 3-layer LSTM with 2048 units)
- Jeff's code is more modularized, whereas this code is optimized for LSTM. <br />
- This code computes gradient w.r.t. recurrent weights with a single matrix computation. <br />
+# Caffe for LSTM-Tracker
 
-  * Batch size = 20, Length = 100
-  
-  | Code           | Forward(ms) | Backward(ms)  | Total (ms) |
-  | -------------- |-------------|---------------|------------|
-  | **This code**  | **248**     | **291**       | **539**    |
-  | Jeff's code    | 264         | 462           | 726        |
+This is a caffe with lstm layer from [here](https://github.com/junhyukoh/caffe-lstm) and with ROIPooling layer and SmoothL1loss layer from [here](https://github.com/rbgirshick/caffe-fast-rcnn)
 
-  * Batch size = 4, Length = 100
-  
-  | Code           | Forward(ms) | Backward(ms)  | Total (ms) |
-  | -------------- |-------------|---------------|------------|
-  | **This code**  | **131**     | **118**       | **249**    |
-  | Jeff's code    | 140         | 290           | 430        |
+# Caffe
 
-  * Batch size = 20, Length = 20
-  
-  | Code           | Forward(ms) | Backward(ms)  | Total (ms) |
-  | -------------- |-------------|---------------|------------|
-  | **This code**  | **49**      | **59**        | **108**    |
-  | Jeff's code    | 52          | 92            | 144        |
+[![Build Status](https://travis-ci.org/BVLC/caffe.svg?branch=master)](https://travis-ci.org/BVLC/caffe)
+[![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
-  * Batch size = 4, Length = 20
-  
-  | Code           | Forward(ms) | Backward(ms)  | Total (ms) |
-  | -------------- |-------------|---------------|------------|
-  | **This code**  | **29**      | **26**        | **55**     |
-  | Jeff's code    | 30          | 61            | 91         |
+Caffe is a deep learning framework made with expression, speed, and modularity in mind.
+It is developed by the Berkeley Vision and Learning Center ([BVLC](http://bvlc.eecs.berkeley.edu)) and community contributors.
 
+Check out the [project site](http://caffe.berkeleyvision.org) for all the details like
 
-# Example
-An example code is in /examples/lstm_sequence/. <br />
-In this code, LSTM network is trained to generate a predefined sequence without any inputs. <br />
-This experiment was introduced by [Clockwork RNN](http://jmlr.org/proceedings/papers/v32/koutnik14.pdf). <br />
-Four different LSTM networks and shell scripts(.sh) for training are provided. <br />
-Each script generates a log file containing the predicted sequence and the true sequence. <br />
-You can use plot_result.m to visualize the result. <br />
-The result of four LSTM networks will be as follows:
-  * 1-layer LSTM with 15 hidden units for short sequence
-![Diagram](https://raw.githubusercontent.com/junhyukoh/caffe-lstm/master/examples/lstm_sequence/lstm-320-b320-h15.png)
-  * 1-layer LSTM with 50 hidden units for long sequence
-![Diagram](https://raw.githubusercontent.com/junhyukoh/caffe-lstm/master/examples/lstm_sequence/lstm-960-b320-h50.png)
-  * 3-layer deep LSTM with 7 hidden units for short sequence
-![Diagram](https://raw.githubusercontent.com/junhyukoh/caffe-lstm/master/examples/lstm_sequence/deep-lstm-320-b320-h7.png)
-  * 3-layer deep LSTM with 23 hidden units for long sequence
-![Diagram](https://raw.githubusercontent.com/junhyukoh/caffe-lstm/master/examples/lstm_sequence/deep-lstm-960-b320-h23.png)
+- [DIY Deep Learning for Vision with Caffe](https://docs.google.com/presentation/d/1UeKXVgRvvxg9OUdh_UiC5G71UMscNPlvArsWER41PsU/edit#slide=id.p)
+- [Tutorial Documentation](http://caffe.berkeleyvision.org/tutorial/)
+- [BVLC reference models](http://caffe.berkeleyvision.org/model_zoo.html) and the [community model zoo](https://github.com/BVLC/caffe/wiki/Model-Zoo)
+- [Installation instructions](http://caffe.berkeleyvision.org/installation.html)
+
+and step-by-step examples.
+
+[![Join the chat at https://gitter.im/BVLC/caffe](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BVLC/caffe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+Please join the [caffe-users group](https://groups.google.com/forum/#!forum/caffe-users) or [gitter chat](https://gitter.im/BVLC/caffe) to ask questions and talk about methods and models.
+Framework development discussions and thorough bug reports are collected on [Issues](https://github.com/BVLC/caffe/issues).
+
+Happy brewing!
+
+## License and Citation
+
+Caffe is released under the [BSD 2-Clause license](https://github.com/BVLC/caffe/blob/master/LICENSE).
+The BVLC reference models are released for unrestricted use.
+
+Please cite Caffe in your publications if it helps your research:
+
+    @article{jia2014caffe,
+      Author = {Jia, Yangqing and Shelhamer, Evan and Donahue, Jeff and Karayev, Sergey and Long, Jonathan and Girshick, Ross and Guadarrama, Sergio and Darrell, Trevor},
+      Journal = {arXiv preprint arXiv:1408.5093},
+      Title = {Caffe: Convolutional Architecture for Fast Feature Embedding},
+      Year = {2014}
+    }
